@@ -1,23 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>往届学生</title>
-<!--    <link rel="icon" href="favicon.ico" type="image/x-icon">-->
-        <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" sizes="16x16" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>往届学生展示</title>
+    <link rel="stylesheet" href="static/css/fontawesome-free-6.7.2-web/fontawesome-free-6.7.2-web/css/all.css">
+     <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" sizes="16x16">
 </head>
 <body>
-<h1><em>这里永不关停，随时来看！</em></h1>
-<div class="block">
-<p><em>Test Video</em></p>
-<video controls width="600" height="400" playsinline muted>
-  <source src="static/video.mp4" type="video/mp4">
-  <source src="static/video.webm" type="video/webm"> <!-- 安卓备用格式 -->
-  <p>您的设备不支持HTML5视频，请下载<a href="static/video.mp4">MP4视频</a></p>
-</video>
+<div class="container">
+    <!-- 顶部标题 -->
+    <h1 class="main-title"><em>这里永不关停，随时来看！</em></h1>
+
+    <div class="content-wrapper">
+        <!-- 左侧视频区 -->
+        <div class="left-section">
+            <div class="video-container">
+                <p class="video-title"><em>Test Video</em></p>
+                <video controls width="100%" height="auto" playsinline muted>
+                    <source src="static/home_video/video.mp4" type="video/mp4">
+                    <source src="static/home_video/video.webm" type="video/webm">
+                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>
+                </video>
+            </div>
+            <div class="video-container">
+                <p class="video-title"><em>Test Video</em></p>
+                <video controls width="100%" height="auto" playsinline muted>
+                    <source src="static/home_video/video.mp4" type="video/mp4">
+                    <source src="static/home_video/video.webm" type="video/webm">
+                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>
+                </video>
+            </div>
+        </div>
+
+        <!-- 右侧内容区 -->
+        <div class="right-section">
+            <h1 class="right-title"><em>展示图片</em></h1>
+            <div class="image-gallery">
+                <img src="static/home_picture/gate_of_school.png" alt="展示图片">
+                <img src="static/home_picture/logo.png" alt="展示图片">
+            </div>
+
+            <!-- 底部导航栏 -->
+            <div class="nav-container">
+                <div class="nav-item">
+
+                    <button class="nav-toggle">
+                        <span class="year" style="font-family: 'FontAwesome', sans-serif;">2029届</span>
+                    </button>
+                    <div class="nav-content">
+                        <p>班长：</p>
+                        <p>班主任：</p>
+                        <p> </p>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <button class="nav-toggle">2030届</button>
+                    <div class="nav-content">
+                        <p>手机视频无法播放原因及解决方法</p>
+                        <p>登录</p>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <button class="nav-toggle">2031届</button>
+                    <div class="nav-content">
+                        <p>无限储存空间，邮件已读追踪</p>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <button class="nav-toggle">2032届</button>
+                    <div class="nav-content">
+                        <p>无限储存空间，邮件已读追踪</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script src="static/js/script.js"></script>
 </body>
-
 </html>
