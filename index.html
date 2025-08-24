@@ -11,8 +11,10 @@
 <h1><em>这里永不关停，随时来看！</em></h1>
 <div class="block">
 <p><em>Test Video</em></p>
-<video controls width="600" height="400">
-    <source src="static/video.mp4" type="video/mp4">
+<video controls width="600" height="400" playsinline muted>
+  <source src="static/video.mp4" type="video/mp4">
+  <source src="static/video.webm" type="video/webm"> <!-- 安卓备用格式 -->
+  <p>您的设备不支持HTML5视频，请下载<a href="static/video.mp4">MP4视频</a></p>
 </video>
 </div>
 
