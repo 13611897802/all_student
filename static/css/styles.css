@@ -1,70 +1,179 @@
-/* 重置默认边距和设置盒模型 */
+/* 基础重置 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Microsoft YaHei', sans-serif;
 }
 
-/* 主体居中布局 */
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
     color: #333;
-    text-align: center;
 }
 
-/* 主标题样式 */
-h1 {
-    margin-bottom: 25px;
-    font-size: 2.5rem;
-    color: #2c3e50;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-h1 em {
-    color: #3498db;
-    font-style: normal;
+/* 主标题样式 - 左上角 */
+.main-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
+    text-align: left;
 }
 
-/* 视频容器样式 */
-.block {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
-    max-width: 800px;
-    width: 100%;
+/* 内容区布局 */
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    border-top: 1px solid #000;
+    padding-top: 20px;
 }
 
-.block p {
+/* 左侧视频区 */
+.left-section {
+    flex: 1.7;
+}
+
+.video-container {
+    margin-bottom: 20px;
+}
+
+.video-title {
     font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #3498db;
-    font-weight: 500;
+    margin-bottom: 10px;
+    color: #444;
 }
 
-/* 视频响应式样式 */
 video {
     width: 100%;
-    max-width: 600px;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
+/* 右侧内容区 */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* 图片展示区 */
+.image-gallery {
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 重构导航栏布局 */
+.nav-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 强制两列布局 */
+    gap: 10px;
+}
+
+.nav-item {
+    width: 100%; /* 确保每项占满单元格 */
+}
+
+.nav-toggle {
+    /*position: relative;*/
+    width: 100%;
+    padding: 10px 12px 10px 30px;
+    background-color: #f9f9f9;
+    border: none;
+    /*border-radius: 5px;*/
+    /*text-align: left;*/
+    /*font-size: 0.9rem;*/
+    /*cursor: pointer;*/
+    /*transition: background-color 0.3s;*/
+    /*white-space: nowrap;*/
+}
+
+.nav-toggle::before {
+    /*content: "→";*/
+    /*position: absolute;*/
+    /*left: 10px;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    /*transition: transform 0.3s ease;*/
+    /*font-size: 1rem;*/
+}
+
+/*.nav-item.active .nav-toggle::before {*/
+/*    transform: translateY(-50%) rotate(90deg);*/
+/*}*/
+
+.nav-toggle:hover {
+    background-color: #e1e1e1;
+}
+
+.nav-content {
+    padding: 0 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+}
+
+.nav-content p {
+    padding: 6px 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-item.active .nav-content {
+    max-height: 500px;
+    padding: 8px 10px;
+}
+/* 确保最后一个单数项占满整行 */
+.nav-item:last-child:nth-child(odd) {
+    flex: 0 0 100%;
+}
+/*!* 单数项处理（当有3个时） *!*/
+/*.nav-item:nth-child(3):last-child {*/
+/*    grid-column: span 2; !* 第三个项跨两列 *!*/
+/*    width: 50%; !* 保持与其他项同宽 *!*/
+/*    margin: 0 auto; !* 居中显示 *!*/
+/*}*/
 /* 响应式设计 */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
+    .content-wrapper {
+        flex-direction: column;
     }
-    
-    .block {
-        padding: 20px;
+
+    .main-title {
+        font-size: 1.8rem;
+    }
+
+    .nav-container {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        width: 100%;
     }
 }
