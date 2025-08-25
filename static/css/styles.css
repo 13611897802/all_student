@@ -159,6 +159,102 @@ video {
 /*    width: 50%; !* 保持与其他项同宽 *!*/
 /*    margin: 0 auto; !* 居中显示 *!*/
 /*}*/
+
+/* 年份导航栏样式 - 保持与现有样式一致 */
+.year-nav-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.year-button {
+    width: 100%;
+    padding: 10px 12px 10px 30px;
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.year-button:hover {
+    background-color: #e1e1e1;
+}
+
+.more-button {
+    width: 100%;
+    padding: 10px 12px 10px 30px;
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.more-button:hover {
+    background-color: #e1e1e1;
+}
+
+.more-button::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.more-button.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0 0 5px 5px;
+    min-width: 200px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 12px 10px 30px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+    background-color: #e1e1e1;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .content-wrapper {
