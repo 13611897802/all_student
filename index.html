@@ -15,24 +15,29 @@
 
     <div class="content-wrapper">
         <!-- 左侧视频区 -->
-        <div class="left-section">
-            <div class="video-container">
-                <p class="video-title"><em>Test Video</em></p>
-                <video controls width="100%" height="auto" playsinline muted>
-                    <source src="static/home_video/video.mp4" type="video/mp4">
-                    <source src="static/home_video/video.webm" type="video/webm">
-                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>
-                </video>
+<!--        <div class="left-section">-->
+            <div class="left-section" id="player">
+              <em> <div class="video-title" id="current-title">加载中...</div></em>
+                <video id="main-video" controls></video>
+                <div class="playlist" id="playlist"></div>
             </div>
-            <div class="video-container">
-                <p class="video-title"><em>Test Video</em></p>
-                <video controls width="100%" height="auto" playsinline muted>
-                    <source src="static/home_video/video.mp4" type="video/mp4">
-                    <source src="static/home_video/video.webm" type="video/webm">
-                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>
-                </video>
-            </div>
-        </div>
+<!--            <div class="video-container">-->
+<!--                <p class="video-title"><em>Test Video</em></p>-->
+<!--                <video controls width="100%" height="auto" playsinline muted>-->
+<!--                    <source src="static/home_video/video.mp4" type="video/mp4">-->
+<!--                    <source src="static/home_video/video.webm" type="video/webm">-->
+<!--                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>-->
+<!--                </video>-->
+<!--            </div>-->
+<!--            <div class="video-container">-->
+<!--                <p class="video-title"><em>Test Video</em></p>-->
+<!--                <video controls width="100%" height="auto" playsinline muted>-->
+<!--                    <source src="static/home_video/video.mp4" type="video/mp4">-->
+<!--                    <source src="static/home_video/video.webm" type="video/webm">-->
+<!--                    <p>您的设备不支持HTML5视频，请下载<a href="static/home_video/video.mp4">MP4视频</a></p>-->
+<!--                </video>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <!-- 右侧内容区 -->
         <div class="right-section">
@@ -49,7 +54,47 @@
         </div>
     </div>
 </div>
+<script>
+    fetch('static/home_video/video.json')
+        .then(response => response.json())
+        .then(data => {
+            const mainVideo = document.getElementById('main-video');
+            const currentTitle = document.getElementById('current-title');
+            const playlist = document.getElementById('playlist');
 
+            currentTitle.textContent = "选择视频播放";
+            playlist.innerHTML = '';
+
+            data.forEach((video, index) => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                item.textContent = video.name;
+
+                item.addEventListener('click', () => {
+                    mainVideo.src = video.path;
+                    currentTitle.textContent = video.name;
+                    mainVideo.play();
+                });
+                playlist.appendChild(item);
+
+                // 如果不是最后一个元素，则添加<br>标签
+                if (index < data.length - 1) {
+                    const br = document.createElement('br');
+                    playlist.appendChild(br);
+                }
+            });
+
+            if(data.length > 0) {
+                mainVideo.src = data[0].path;
+                currentTitle.textContent = data[0].name;
+            }
+        })
+        .catch(error => {
+            console.error('加载JSON失败:', error);
+            document.getElementById('player').innerHTML =
+                '<p style="color:red">视频加载失败，请检查videos.json文件</p>';
+        });
+</script>
 <script src="static/js/script.js"></script>
 </body>
 </html>
